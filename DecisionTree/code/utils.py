@@ -36,7 +36,7 @@ def plotClassifier(model, X, y):
     y_pred = model.predict(mesh_data)
     y_pred = np.reshape(y_pred, x1_mesh.shape)
 
-    plt.figure()
+    #plt.figure()
     plt.xlim([x1_mesh.min(), x1_mesh.max()])
     plt.ylim([x2_mesh.min(), x2_mesh.max()])
 
