@@ -1,6 +1,6 @@
 # Decision Tree Different Implementation
 
-[Summary Plot](/figs/DecisionTree_summary.pdf)
+[Summary Plot](./figs/DecisionTree_summary.pdf)
 
 Error Rate: ~11 seconds
 Infomation Gain (Entropy): ~16 seconds
