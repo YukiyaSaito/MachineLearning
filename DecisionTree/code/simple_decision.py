@@ -1,3 +1,5 @@
+#This is a hard-coded version of a depth-2 decision tree optimized by information gain (DecisionStumpInfoGain class in decision_stump.py).
+
 import numpy as np
 
 class SimpleDecision:

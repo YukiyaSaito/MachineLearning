@@ -5,25 +5,15 @@ import time
 import pickle
 
 # 3rd party libraries
-import numpy as np                              # this comes with Anaconda
-import pandas as pd                             # this comes with Anaconda
-import matplotlib.pyplot as plt                 # this comes with Anaconda
-from scipy.optimize import approx_fprime        # this comes with Anaconda
+import numpy as np                             
+import pandas as pd                            
+import matplotlib.pyplot as plt                
+from scipy.optimize import approx_fprime       
 from scipy import stats
-from sklearn.tree import DecisionTreeClassifier # if using Anaconda, install with `conda install scikit-learn`
+from sklearn.tree import DecisionTreeClassifier
 import bigO
 
-""" NOTE:
-Python is nice, but it's not perfect. One horrible thing about Python is that a 
-package might use different names for installation and importing. For example, 
-seeing code with `import sklearn` you might sensibly try to install the package 
-with `conda install sklearn` or `pip install sklearn`. But, in fact, the actual 
-way to install it is `conda install scikit-learn` or `pip install scikit-learn`.
-Wouldn't it be lovely if the same name was used in both places, instead of 
-`sklearn` and then `scikit-learn`? Please be aware of this annoying feature. 
-"""
-
-# CPSC 340 code
+# user-defined
 import utils
 import grads
 from decision_stump import DecisionStumpEquality, DecisionStumpErrorRate, DecisionStumpInfoGain
