@@ -5,6 +5,7 @@ This will run a robust PCA (L1-norm) and perform background reconstruction as we
 The summary of the implementation is ![here](./doc/pca.pdf).
 
 Results:
+
 ![](./figs/highway_000.png)
 ![](./figs/highway_001.png)
 ![](./figs/highway_002.png)
