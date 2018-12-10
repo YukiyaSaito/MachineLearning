@@ -17,4 +17,4 @@ Results:
 ![](./figs/highway_008.png)
 ![](./figs/highway_009.png)
 
-
+One can see that the robust PCA (L1-norm) does a better job than L2-norm (figures in the upper rows)
