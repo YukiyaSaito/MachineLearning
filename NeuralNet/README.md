@@ -28,6 +28,6 @@ If `python main.py -t 2.3` is run, this will use scikit-learn's neural network i
 
 `hidden_layer_sizes=100, activation=relu, solver=adam`, and so on. 
 
-![scikit learn MLPClassifier performance](./figs/output_sklearn_mlpc.png =200x)
+![scikit learn MLPClassifier performance](./figs/output_sklearn_mlpc.png | width=200)
 
 Hats off to the real neural network!
