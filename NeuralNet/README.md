@@ -12,9 +12,13 @@ Then this calculates
 
 ## Task 2.2
 This uses [the MNIST handwritten digits data file](http://deeplearning.net/data/mnist/mnist.pkl.gz) 
+
 If `python main.py -t 2` is run, this will train a manually implemented one-hidden-layer neural network on the dataset. 
+
 With `sgd=0`, this will do normal gradient descent (100 iterations).
+
 ![Normal gradient descent performance](./figs/output2_2_original.png)
 
 With `sgd=1`, this will use a random minibatch size of 1% of the whole data set at a time and do 10 epochs of gradient descent with a constant learning rate of <img src="https://latex.codecogs.com/gif.latex?\inline&space;\alpha&space;=&space;0.001" title="\alpha = 0.001" />.
+
 ![Stochastic minibatch performance](./figs/output2_2_SGD.png)
