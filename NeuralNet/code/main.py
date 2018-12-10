@@ -26,9 +26,9 @@ if __name__ == '__main__':
     parser.add_argument('-t','--task', required=True)
 
     io_args = parser.parse_args()
-    task = io_args.question
+    task = io_args.task
 
-    elif task == "2":
+    if task == "2.2":
 
         with gzip.open(os.path.join('..', 'data', 'mnist.pkl.gz'), 'rb') as f:
             train_set, valid_set, test_set = pickle.load(f, encoding="latin1")
@@ -73,7 +73,7 @@ if __name__ == '__main__':
 
         #print(W-1)
         
-    elif task == "2.4":
+    elif task == "2.3":
         with gzip.open(os.path.join('..', 'data', 'mnist.pkl.gz'), 'rb') as f:
             train_set, valid_set, test_set = pickle.load(f, encoding="latin1")
         X, y = train_set
