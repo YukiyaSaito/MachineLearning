@@ -1,0 +1,150 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{listings} % For displaying code
+\usepackage{algorithm2e} % pseudo-code
+
+\def\rubric#1{\gre{Rubric: \{#1\}}}{}
+
+% Colors
+\definecolor{blu}{rgb}{0,0,1}
+\def\blu#1{{\color{blu}#1}}
+\definecolor{gre}{rgb}{0,.5,0}
+\def\gre#1{{\color{gre}#1}}
+\definecolor{red}{rgb}{1,0,0}
+\def\red#1{{\color{red}#1}}
+\def\norm#1{\|#1\|}
+
+% Math
+\def\R{\mathbb{R}}
+\def\argmax{\mathop{\rm arg\,max}}
+\def\argmin{\mathop{\rm arg\,min}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\alignStar}[1]{\begin{align*}#1\end{align*}}
+\def\half{\frac 1 2}
+
+% LaTeX
+\newcommand{\fig}[2]{\includegraphics[width=#1\textwidth]{#2}}
+\newcommand{\centerfig}[2]{\begin{center}\includegraphics[width=#1\textwidth]{#2}\end{center}}
+\def\items#1{\begin{itemize}#1\end{itemize}}
+\def\enum#1{\begin{enumerate}#1\end{enumerate}}
+
+\begin{document}
+
+
+\title{}
+\date{}
+\maketitle
+
+\vspace{-7em}
+
+
+
+\section{PCA Generalizations}
+
+\subsection{Robust PCA}
+
+
+If you run \verb|python main -t 1| the code will load a dataset $X$ where each row contains the pixels from a single frame of a video of a highway. The demo applies PCA to this dataset and then uses this to reconstruct the original image.
+It then shows the following 3 images for each frame:
+\enum{
+\item The original frame.
+\item The reconstruction based on PCA.
+\item A binary image showing locations where the reconstruction error is non-trivial.
+}
+
+
+Robust PCA is a variation on PCA where we replace the L2-norm with the L1-norm,
+\[
+f(Z,W) = \sum_{i=1}^n\sum_{j=1}^d |\langle w^j, z_i\rangle - x_{ij}|,
+\]
+and it has recently been proposed as a more effective model for background subtraction. 
+
+
+\underline{\textbf{``multi-quadric'' approximation:}}
+\[
+|\alpha| \approx \sqrt{\alpha^2 + \epsilon},
+\]
+where $\epsilon$ controls the accuracy of the approximation (a typical value of $\epsilon$ is $0.0001$).
+
+\underline{\textbf{Objective Function and Derivatives}}
+\[
+f(Z,W) = \sum_{i=1}^n\sum_{j=1}^d |\langle w^j, z_i\rangle - x_{ij}|,
+\]
+\[
+\approx\sum_{i=1}^n\sum_{j=1}^d \sqrt{\left(\langle w^j, z_i\rangle - x_{ij}\right)^2 + \epsilon}
+\]
+%\[
+%= \sqrt{\left(\langle w^1, z_1 \rangle - x_{11}\right)^2 + \epsilon} + \sqrt{\left(\langle w^2, z_1 \rangle - x_{12}\right)^2 + \epsilon} + \sqrt{\left(\langle w^3, z_1 \rangle - x_{13}\right)^2 + \epsilon} + \cdots
+%\]
+%\[
+%+ \sqrt{\left(\langle w^1, z_2 \rangle - x_{21}\right)^2 + \epsilon} + \sqrt{\left(\langle w^2, z_2 \rangle - x_{22}\right)^2 + \epsilon} + \sqrt{\left(\langle w^3, z_2 \rangle - x_{23}\right)^2 + \epsilon} + \cdots
+%\]
+%\[
+%+ \cdots
+%\]
+%\[
+%+ \sqrt{\left(\langle w^1, z_l \rangle - x_{l1}\right)^2 + \epsilon} + \sqrt{\left(\langle w^2, z_l \rangle - x_{l2}\right)^2 + \epsilon} + \cdots + \sqrt{\left(\langle w^m, z_l \rangle - x_{lm}\right)^2 + \epsilon} + \cdots
+%\]
+Let $l$ and $m$ be $\{l \in \mathbb{N} \mid 1\leq l \leq n \}$ and $\{m \in \mathbb{N} \mid 1\leq m \leq k \}$. Since,
+\[
+\frac{\partial}{\partial Z_{lm}}\langle w^j,z_i \rangle = \frac{\partial}{\partial Z_{lm}} \sum_{p=1}^{k} z_{ip}\cdot w_{pj} = 
+\begin{cases}
+w_{mj} & \text{if} \quad i=l, \\
+0 & \text{otherwise}.
+\end{cases}
+\]
+Therefore,
+\[
+\frac{\partial f(Z,W)}{\partial Z_{lm}} = \frac{\partial}{\partial Z_{lm}} \sum_{i=1}^n\sum_{j=1}^d \sqrt{\left(\langle w^j, z_i\rangle - x_{ij}\right)^2 + \epsilon}
+\]
+\[
+= \sum_{i=1}^n\sum_{j=1}^d \frac{1}{2} \cdot \frac{1}{\sqrt{\left(\langle w^j, z_i\rangle - x_{ij}\right)^2 + \epsilon}} \cdot 2 \cdot \left(\langle w^j, z_i\rangle - x_{ij}\right) \cdot \frac{\partial}{\partial Z_{lm}}\langle w^j,z_i \rangle
+\]
+\[
+= \sum_{j=1}^{d}  \cdot \frac{\langle w^j, z_l \rangle - x_{lj}}{\sqrt{\left(\langle w^j, z_l \rangle - x_{lj}\right)^2 + \epsilon}} \cdot w_{mj}
+\]
+\[
+= \langle w_m , \texttt{ np.multiply(R[l,:],1/f\_mat[l,:])}   \rangle
+\]
+\texttt{np.multiply()} is element-wise multiplication of matrices. \texttt{f\_mat} is the objective function before summation (matrix).
+
+So,
+\[
+\frac{\partial f(Z,W)}{\partial Z} = \texttt{np.multiply(R,1/f\_mat)@W.T}  
+\]
+\texttt{np.multiply(R,1/f\_mat)} is a $(n \times d)$ matrix and \texttt{W.T} is a $(d\times k)$ matrix. So we obtain a gradient matrix with the same size as $Z$.
+
+As for $\dfrac{\partial f(Z,W)}{\partial W}$, let $p$ and $q$ be $\{p \in \mathbb{N} \mid 1\leq p \leq k \}$ and $\{q \in \mathbb{N} \mid 1\leq q \leq d \}$,
+\[
+\frac{\partial}{\partial W_{pq}} \langle w^j,z_i \rangle = \frac{\partial}{\partial W_{pq}} \sum_{r=1}^{k} z_{ir}\cdot w_{rj} =
+\begin{cases}
+	z_{ip} & \text{if} \quad j=q, \\
+	0 & \text{otherwise.}
+\end{cases}
+\]
+\[
+\frac{\partial f(Z,W)}{\partial W_{pq}} = \frac{\partial}{\partial W_{pq}} \sum_{i=1}^n\sum_{j=1}^d \sqrt{\left(\langle w^j, z_i\rangle - x_{ij}\right)^2 + \epsilon}
+\]
+\[
+= \sum_{i=1}^n\sum_{j=1}^d \frac{1}{2} \cdot \frac{1}{\sqrt{\left(\langle w^j, z_i\rangle - x_{ij}\right)^2 + \epsilon}} \cdot 2 \cdot \left(\langle w^j, z_i\rangle - x_{ij}\right) \cdot \frac{\partial}{\partial W_{pq}}\langle w^j,z_i \rangle
+\]
+\[
+= \sum_{i=1}^{n}  \cdot \frac{\langle w^q, z_i \rangle - x_{iq}}{\sqrt{\left(\langle w^q, z_i \rangle - x_{iq}\right)^2 + \epsilon}} \cdot z_{ip}
+\]
+In the same way,
+\[
+\frac{\partial f(Z,W)}{\partial W} = \texttt{Z.T@np.multiply(R,1/f\_mat)} 
+\]
+\texttt{Z.T} is a $(k\times n)$ matrix, \texttt{np.multiply(R,1/f\_mat)} is a $(n\times d)$ matrix, so $\frac{\partial f(Z,W)}{\partial W}$ is a $(k\times d)$ matrix like we wanted. 
+
+
+\end{document}
