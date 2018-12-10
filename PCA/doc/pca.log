@@ -1,10 +1,10 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018) (preloaded format=platex 2018.5.23)  9 DEC 2018 18:39
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018) (preloaded format=platex 2018.5.23)  9 DEC 2018 18:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**a5.tex
-(./a5.tex
+**pca.tex
+(./pca.tex
 pLaTeX2e <2018-04-01>+1 (based on LaTeX2e <2018-04-01> patch level 2)
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
@@ -230,8 +230,9 @@ Package: relsize 2013/03/29 ver 4.1
 \algocf@algobox=\box53
 )
 Package color Info: Redefining color red on input line 22.
- (./a5.aux)
-\openout1 = `a5.aux'.
+
+No file pca.aux.
+\openout1 = `pca.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
@@ -251,7 +252,6 @@ LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
 \c@lstlisting=\count116
 LaTeX Font Info:    Try loading font information for U+msa on input line 45.
-
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
@@ -277,14 +277,14 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 72.
 [1
 
-] [2] (./a5.aux) ) 
+] [2] (./pca.aux) ) 
 Here is how much of TeX's memory you used:
- 4107 strings out of 493281
- 56770 string characters out of 6145041
- 137785 words of memory out of 5000000
+ 4105 strings out of 493281
+ 56763 string characters out of 6145041
+ 137788 words of memory out of 5000000
  7999 multiletter control sequences out of 15000+600000
  17267 words of font info for 71 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 27i,9n,32p,282b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,9n,32p,283b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on a5.dvi (2 pages, 7540 bytes).
+Output written on pca.dvi (2 pages, 7540 bytes).
