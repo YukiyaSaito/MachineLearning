@@ -6,11 +6,14 @@ The three approaches are:
 
 ## Results
 1. Inhomogeneous Markov Chain:
+
 ![Inhomogeneous Markov Chain](inhom_Markov.png)
 ![Probability Distribution](inhom_Markov_prob.png)
 
 2. Tabular DAG:
+
 ![Tabular DAG](tabularDAG.png)
 
 3. Sigmoid Belief Network:
+
 ![Sigmoid Belief Network](sigBelNet.png)
